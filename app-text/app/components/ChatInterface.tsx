@@ -39,7 +39,7 @@ const ChatInterface: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="chat-interface bg-white p-4 h-full w-full flex flex-col justify-between overflow-hidden pt-5">
       <div className="chat-container">
         {messages.map((message, index) => (
           <div key={index} className={`message ${message.sender}`}>
@@ -47,15 +47,18 @@ const ChatInterface: React.FC = () => {
           </div>
         ))}
       </div>
-      <form onSubmit={handleSubmit} className="input-form">
-        <input
+      <form onSubmit={handleSubmit} className="input-form flex items-center">
+      <input
           type="text"
           value={inputValue}
           onChange={handleInputChange}
           placeholder="Type your prompt..."
+          className='flex flex-grow min-w-0 h-auto resize-none bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
+          focus:border-blue-500 block p-2.5 mr-2  resize-vertical min-height-100 max-height-200'
         />
-        <button type="submit">Send</button>
+        <button type="submit" className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>Send</button>
       </form>
+
     </div>
   );
 };

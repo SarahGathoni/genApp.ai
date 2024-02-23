@@ -10,10 +10,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+      <div className='mx-auto justify-center w-1/2 p-4 bg-white rounded-lg shadow-lg > 
+'>
         <h1>ask me anything</h1>
         <ChatInterface />
-      </main>
+      </div>
     </div>
     </>
     
