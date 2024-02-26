@@ -8,7 +8,7 @@ const ChatInterface: React.FC = () => {
   const sendMessage = async () => {
     try {
       const response = await fetch('/api/generate-content', {
-        method: 'POST',
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json'
         },
