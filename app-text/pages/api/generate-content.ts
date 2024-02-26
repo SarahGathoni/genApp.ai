@@ -3,6 +3,12 @@ import { VertexAI } from '@google-cloud/vertexai';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
+    // Retrieve input value from query parameters
+    const inputValue = req.query.inputValue as string;
+
+    // Validate inputValue if needed
+
+    // Initialize Vertex with your Cloud project and location
     const vertex_ai = new VertexAI({ project: 'neon-deployment-414620', location: 'us-central1' });
     const model = 'gemini-1.0-pro-001';
 
