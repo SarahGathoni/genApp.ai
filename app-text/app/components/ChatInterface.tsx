@@ -1,5 +1,6 @@
 'use client'
 import React, { useState, ChangeEvent, FormEvent } from 'react';
+import axios from 'axios';
 
 const ChatInterface: React.FC = () => {
   const [inputValue, setInputValue] = useState('');
@@ -7,17 +8,11 @@ const ChatInterface: React.FC = () => {
 
   const sendMessage = async () => {
     try {
-      const response = await fetch('/api/generate-content?inputValue=${encodeURIComponent(inputValue)}', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ prompt: inputValue })
-      });
-      if (!response.ok) {
+      const response = await axios.post('/api/generate-content', { prompt: inputValue });
+      if (response.status !== 200) {
         throw new Error('Error generating content');
       }
-      const data = await response.json();
+      const data = response.data;
       // Update messages state with the generated content
       setMessages([...messages, { sender: 'bot', text: data }]);
       // Clear input field after sending the message
@@ -48,7 +43,7 @@ const ChatInterface: React.FC = () => {
         ))}
       </div>
       <form onSubmit={handleSubmit} className="input-form flex items-center">
-      <input
+        <input
           type="text"
           value={inputValue}
           onChange={handleInputChange}
@@ -58,7 +53,6 @@ const ChatInterface: React.FC = () => {
         />
         <button type="submit" className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>Send</button>
       </form>
-
     </div>
   );
 };
